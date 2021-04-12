@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Canvas Calculator</title>
+	<style>
+		* {
+			font-family: monospace;
+		}
+
+		body {
+			margin:0;
+			background-color: #FFF5F0;
+		}
+
+		canvas {
+			background-color: #FFF;
+			display: block;
+			margin: 10px;
+		}
+
+		label {
+			display: inline-block;
+		}
+
+		div {
+			display: block;
+		}
+
+		p {
+			width: 100%;
+		}
+
+		div#info {
+			padding: 5px;
+			border: 2px solid orange;
+			position: fixed;
+			margin-right: 30px;
+			width: 600px;
+			top: 20px;
+			right: 0px;
+		}
+
+		#info ul {
+			margin-left: -15px;
+		}
+	</style>
+</head>
+<body onload="setup(0, 1, 0, 100);">
+	<canvas id="canvas" width="600" height="600" style="border: solid black 2px;"></canvas>
+	<div id="info">
+		<h2>What it do?</h2>
+		<p>takes a point from on line a and converts it the relative point on line b.</p>
+		<p>Except it doesn't, not yet...</p>
+		<br>
+		<h2>Example:</h2>
+		<p>If you use the already specified line ranges then 0.5 on line a should transfer to 50 on line b. Simply because the range difference has the same starting point and the end point is 100x more on line bm so the midpoint must also be 100x! Struggling to concentrate now but I'm sure this is possible and not that hard.</p>
+		<br>
+		<p>I have another version working but it is more complicated than this due to other elements. This is the specific problem that I need to solve though so I wanted to make this lil thing to visulaise it and make it easier to solve the problem!</p>
+		<p>Oh and cos I wanted to ask for help lol</p>
+	</div>
+	<div id="options">
+		<input type="number" id="aMin" placeholder="1st line start">
+		<input type="number" id="aMax" placeholder="1st line end">
+		<input type="number" id="bMin" placeholder="2nd line start">
+		<input type="number" id="bMax" placeholder="2nd line end">
+		<input type="number" id="aCoord" placeholder="1st line Coord">
+		<button onclick="getCoords();">Go</button>
+	</div>
+	<script>
+		const c = document.getElementById("canvas");
+		const ctx = c.getContext("2d");
+		ctx.font = "9px monospace";
+
+		var aMin = 0;
+		var aCoord = 0;
+		var aMax = 1;
+		var bMin = 10;
+		var bCoord = 0;
+		var bMax = 60;
+
+		function drawLine(DLx1, DLy1, DLx2, DLy2, color) // Makes drawing a line easier!
+		{
+			ctx.beginPath();
+			ctx.strokeStyle = color;
+			ctx.moveTo(DLx1, DLy1);
+			ctx.lineTo(DLx2, DLy2);
+			ctx.stroke();
+			ctx.closePath();
+			console.log("Drew a "+color+" line from "+DLx1+","+DLy1+", to "+DLx2+","+DLy2+"...");
+		}
+
+		function clearCanvas() // Simply clears the canvas and logs it
+		{
+			console.log("Canvas Cleared...");
+			ctx.clearRect(0, 0, c.width, c.height);
+		}
+
+		function setup(aMin, aMax, bMin, bMax) // Draws the range lines on the canvas
+		{
+			ctx.fillText(aMin, 44, 202);
+			ctx.fillText(aMax, 551, 202);
+			ctx.fillText(bMin, 39, 402);
+			ctx.fillText(bMax, 551, 402);
+
+			drawLine(50, 200, 550, 200, "#123");
+			drawLine(50, 400, 550, 400, "#123");
+		}
+
+		function getCoords()
+		{
+			var aMin = document.querySelector("#aMin");
+			var aMax = document.querySelector("#aMax");
+			var bMin = document.querySelector("#bMin");
+			var bMax = document.querySelector("#bMax");
+			var aCoord = document.querySelector("#aCoord");
+			converter();
+		}
+		
+		function converter(aMin, aMax, bMin, bMax, aCoord, bCoord)
+		{
+			//Needs to take each value on line a and turn it into the corresponding value on line b
+			alert("Herp derp I dont work yet")
+		}
+	</script>
+</body>
+</html>
