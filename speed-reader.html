@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Speed Reader 1000</title>
+	<style>
+		* {
+		font-family: Verdana;
+		}
+
+		body {
+			margin:0;
+			background-color: #FFF5F0;
+		}
+
+		h2 {
+			font-size: 3em;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 99vw;
+			height: 55vh;
+			text-align: center;
+		}
+
+		#setup {
+			background-color: rgba(0,0,0,0.3);
+			padding: 5px;
+			width: calc(50vw + 10px);
+			height: 15vh;
+			margin-left: 24vw;
+			margin-top: 3vh;
+			text-align: center;
+		}
+
+		#textInput {
+			width: 50vw;
+			height: 11vh;
+		}
+
+
+
+		#go {
+			margin-top: 5px;
+			background-color: #77ff99aa;
+		}
+
+		#go:hover {
+			background-color: #33ff55ff;
+		}
+	</style>
+</head>
+<body onload="">
+	<div id="setup">
+		<input type="text" placeholder="text to read goes here..." id="textInput">
+		<input type="number" placeholder="Speed (ms)" id="speedInput">
+		<button onclick="speedRead();" id="go">Go!</button>
+	</div>
+	<h2 id="output">Ready?</h2>
+	<script>
+		var id = null;
+		function speedRead() {
+			console.log("1");
+			var speed = document.querySelector("#speedInput").value;
+			var text = document.querySelector("#textInput").value;
+			console.log("2");
+			var wordsArray = text.split(" ");
+			console.log(wordsArray);
+		  	var output = document.querySelector("#output").innerText;   
+		  	var pos = 0;
+		  	clearInterval(id);
+		  	id = setInterval(frame, Number(speed));
+		  	function frame() {
+		    	if (pos == wordsArray.length) {
+		    		output = "Done!";
+		    	  clearInterval(id);
+		    	} else {
+		    		console.log(wordsArray[pos]);
+		    		output = wordsArray[pos];
+		    	  	pos++;
+		    	}
+		  	}
+		}
+	</script>
+</body>
+</html>
