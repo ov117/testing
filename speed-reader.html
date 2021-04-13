@@ -39,8 +39,6 @@
 			height: 11vh;
 		}
 
-
-
 		#go {
 			margin-top: 5px;
 			background-color: #77ff99aa;
@@ -57,28 +55,26 @@
 		<input type="number" placeholder="Speed (ms)" id="speedInput">
 		<button onclick="speedRead();" id="go">Go!</button>
 	</div>
-	<h2 id="output">Ready?</h2>
+	<h2 id="output"></h2>
 	<script>
 		var id = null;
 		function speedRead() {
-			console.log("1");
-			var speed = document.querySelector("#speedInput").value;
-			var text = document.querySelector("#textInput").value;
-			console.log("2");
-			var wordsArray = text.split(" ");
-			console.log(wordsArray);
-		  	var output = document.querySelector("#output").innerText;   
-		  	var pos = 0;
+			var speed = Number(document.querySelector("#speedInput").value); //set speed var as the speed inputted by the user (make sure it's a number)
+			var text = document.querySelector("#textInput").value; //set text var as the text to read from the input  
+			var wordsArray = text.split(" "); //split text into an array of words separated by spaces
+			console.log(wordsArray); // log the word array
+		  	var output = document.querySelector("#output").innerText; // output var = the text of the #output h2
+		  	var pos = 0; // sets the array positi0on to 0
 		  	clearInterval(id);
-		  	id = setInterval(frame, Number(speed));
+		  	id = setInterval(frame, speed); // run frame function every (speed)ms
 		  	function frame() {
-		    	if (pos == wordsArray.length) {
-		    		output = "Done!";
-		    	  clearInterval(id);
+		    	if (pos == wordsArray.length) { // if the end of the array is reached
+		    		output = "Done!"; // Output done
+		    	  clearInterval(id); // End the animation loop
 		    	} else {
-		    		console.log(wordsArray[pos]);
-		    		output = wordsArray[pos];
-		    	  	pos++;
+		    		console.log(wordsArray[pos]); // log the current word
+		    		output = wordsArray[pos]; // output the current word
+		    	  	pos++; // increase array position by 1
 		    	}
 		  	}
 		}
